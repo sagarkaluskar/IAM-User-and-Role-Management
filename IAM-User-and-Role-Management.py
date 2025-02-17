@@ -4,7 +4,7 @@ import boto3
 
 from botocore.exceptions import ClientError
 
-#1 program to check existing IAM users
+#1 PROGRAM TO CHECK EXISTING IAM USERS
 
 aws_management_console = boto3.session.Session(profile_name="default")
 
@@ -22,7 +22,9 @@ for each_user in iam_console.users.all():
 
     #printing all the users name
 
-#1 program to check existing IAM users
+#1 PROGRAM TO CHECK EXISTING IAM USERS
+
+
 
 
 
