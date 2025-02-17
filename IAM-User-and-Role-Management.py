@@ -1,5 +1,7 @@
 import boto3
+
 #boto3 is a module used to interact with AWS. 
+
 from botocore.exceptions import ClientError
 
 #program to check existing IAM users
