@@ -323,7 +323,7 @@ for key, value in response['SummaryMap'].items():
 
 #24 Delete an IAM Policy
 
-#24 Get IAM Role Details
+#25 Get IAM Role Details
 
 response = iam.get_role(RoleName='EC2_S3_Access_Role')
 
@@ -331,9 +331,9 @@ print(response['Role'])
 
 #Calls get_role() to fetch details like trust policy, role ARN, and permissions
 
-#24 Get IAM Role Details
+#25 Get IAM Role Details
 
-#25 Get IAM Policy Details
+#26 Get IAM Policy Details
 
 response = iam.get_policy(
     PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
@@ -343,9 +343,9 @@ print(response['Policy'])
 
 #Calls get_policy() to fetch details about an IAM policy, such as ARN, Policy type (AWS-managed or customer-managed)
 
-#25 Get IAM Policy Details
+#26 Get IAM Policy Details
 
-#26 Get IAM Policy Document (JSON Representation)
+#27 Get IAM Policy Document (JSON Representation)
 
 response = iam.get_policy_version(
     PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess',
@@ -357,9 +357,9 @@ print(response['PolicyVersion']['Document'])
 #Calls get_policy_version() to get the JSON document of an IAM policy.
 #Useful for auditing IAM permissions.
 
-#26 Get IAM Policy Document (JSON Representation)
+#27 Get IAM Policy Document (JSON Representation)
 
-#27 Delete an IAM Login Profile
+#28 Delete an IAM Login Profile
 
 #response = iam.delete_login_profile(UserName='new-user')
 
@@ -367,9 +367,9 @@ print(response['PolicyVersion']['Document'])
 
 #Calls delete_login_profile() to disable AWS Console login for a user.
 
-#27 Delete an IAM Login Profile
+#28 Delete an IAM Login Profile
 
-#28 List IAM Account Alias
+#29 List IAM Account Alias
 
 response = iam.list_account_aliases()
 
@@ -379,9 +379,9 @@ for alias in response['AccountAliases']:
 #Calls list_account_aliases() to retrieve human-readable AWS account aliases.
 #Useful for branding (e.g., my-company-account).
 
-#28 List IAM Account Alias
+#29 List IAM Account Alias
 
-#29 Set IAM Account Alias
+#30 Set IAM Account Alias
 
 #response = iam.create_account_alias(AccountAlias='my-company-account')
 
@@ -389,9 +389,9 @@ for alias in response['AccountAliases']:
 
 #Calls create_account_alias() to set a human-friendly name for the AWS account.
 
-#29 Set IAM Account Alias
+#30 Set IAM Account Alias
 
-#30 Remove IAM Account Alias
+#31 Remove IAM Account Alias
 
 #response = iam.delete_account_alias(AccountAlias='my-company-account')
 
@@ -399,5 +399,24 @@ for alias in response['AccountAliases']:
 
 #Calls delete_account_alias() to remove an AWS friendly name.
 
-#30 Remove IAM Account Alias
+#31 Remove IAM Account Alias
 
+#32 Generate IAM Credential Report
+
+response = iam.generate_credential_report()
+print(response)
+
+#Calls generate_credential_report() to audit IAM users and credentials.
+#Useful for compliance checks.
+
+#32 Generate IAM Credential Report
+
+#33 Get IAM Credential Report
+
+response = iam.get_credential_report()
+print(response['Content'].decode('utf-8'))
+
+#Calls get_credential_report() to fetch IAM security details.
+#Report includes password age, MFA usage, and access key rotation.
+
+#33 Get IAM Credential Report
