@@ -89,7 +89,7 @@ for user in response['Users']:
 
 #6 Delete an IAM User
 
-#response = iam.delete_user(UserName='skaluskar')
+#response = iam.delete_user(UserName='test-user')
 
 #print(response)
 
