@@ -12,24 +12,24 @@ iam = boto3.client("iam")
 #1 CREATE AN IAM USER
 
 # Initialize IAM client
-#iam = boto3.client('iam')
+iam = boto3.client('iam')
 
 # Create user
-#response = iam.create_user(UserName='test-user')
+response = iam.create_user(UserName='test-user')
 
 # Print response
-#print(response)
+print(response)
    
 #1 CREATE AN IAM USER
 
 #2 Attach a Policy to a User
 
-#response = iam.attach_user_policy(
-#    UserName='test-user',
-#    PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
-#)
+response = iam.attach_user_policy(
+    UserName='test-user',
+    PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+)
 
-#print(response)
+print(response)
 
 #Uses attach_user_policy() to attach an existing AWS-managed policy to a user.
 #The PolicyArn is the Amazon Resource Name (ARN) for the predefined AmazonS3ReadOnlyAccess policy.
@@ -51,12 +51,12 @@ trust_policy = {
 
 #Define trust policy (Allows EC2 to assume the role)
 
-#response = iam.create_role(
-#    RoleName='EC2_S3_Access_Role',
-#    AssumeRolePolicyDocument=json.dumps(trust_policy)
-#)
+response = iam.create_role(
+    RoleName='EC2_S3_Access_Role',
+    AssumeRolePolicyDocument=json.dumps(trust_policy)
+)
 
-#print(response)
+print(response)
 
 #Creates an IAM role with create_role()
 #The AssumeRolePolicyDocument defines the trust relationship allowing EC2 instances to assume the role.
@@ -89,9 +89,9 @@ for user in response['Users']:
 
 #6 Delete an IAM User
 
-#response = iam.delete_user(UserName='test-user')
+response = iam.delete_user(UserName='test-user')
 
-#print(response)
+print(response)
 
 #Uses delete_user() to remove the IAM user.
 
@@ -99,9 +99,9 @@ for user in response['Users']:
 
 #7 Create an IAM Group
 
-#response = iam.create_group(GroupName='Security_Engineers')
+response = iam.create_group(GroupName='Security_Engineers')
 
-#print(response)
+print(response)
 
 #Calls create_group() to create an IAM group named Software Engineers.
 
@@ -109,12 +109,12 @@ for user in response['Users']:
 
 #8 Add a User to a Group
 
-#response = iam.add_user_to_group(
-#    GroupName='Security_Engineers',
-#    UserName='test-user'
-#)
+response = iam.add_user_to_group(
+    GroupName='Security_Engineers',
+    UserName='test-user'
+)
 
-#print(response)
+print(response)
 
 #Calls add_user_to_group() to associate test-user with Security_Engineers.
 
@@ -122,10 +122,10 @@ for user in response['Users']:
 
 #9 Attach a Policy to a Group
 
-#response = iam.attach_group_policy(
-#    GroupName='Security_Engineers',
-#    PolicyArn='arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess'
-#)
+response = iam.attach_group_policy(
+    GroupName='Security_Engineers',
+    PolicyArn='arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess'
+)
 
 #print(response)
 
@@ -135,23 +135,23 @@ for user in response['Users']:
 
 #10 Create an IAM Policy
 
-#policy_document = {
-#    "Version": "2012-10-17",
-#    "Statement": [
-#        {
-#            "Effect": "Allow",
-#            "Action": "s3:ListBucket",
-#            "Resource": "arn:aws:s3:::my-bucket"
-#        }
-#    ]
-#}
+policy_document = {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::my-bucket"
+        }
+    ]
+}
 
-#response = iam.create_policy(
-#    PolicyName='S3ReadOnlyPolicy',
-#    PolicyDocument=json.dumps(policy_document)
-#)
+response = iam.create_policy(
+    PolicyName='S3ReadOnlyPolicy',
+    PolicyDocument=json.dumps(policy_document)
+)
 
-#print(response)
+print(response)
 
 #Uses create_policy() to define a new policy with S3 ListBucket permissions.
 #The policy applies to my-bucket.
@@ -160,9 +160,9 @@ for user in response['Users']:
 
 #11 Get IAM User Details
 
-#response = iam.get_user(UserName='test-user')
+response = iam.get_user(UserName='test-user')
 
-#print(response)
+print(response)
 
 #Calls get_user() to fetch IAM user details like ARN, creation date, and attached policies.
 
@@ -170,10 +170,10 @@ for user in response['Users']:
 
 #12 List Attached Policies for a User
 
-#response = iam.list_attached_user_policies(UserName='test-user')
+response = iam.list_attached_user_policies(UserName='test-user')
 
-#for policy in response['AttachedPolicies']:
-#    print(policy['PolicyName'], policy['PolicyArn'])
+for policy in response['AttachedPolicies']:
+    print(policy['PolicyName'], policy['PolicyArn'])
 
 #Uses list_attached_user_policies() to fetch all policies assigned to test-user.
 
@@ -181,12 +181,12 @@ for user in response['Users']:
 
 #13 Detach a Policy from a User
 
-#response = iam.detach_user_policy(
-#    UserName='test-user',
-#    PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
-#)
+response = iam.detach_user_policy(
+    UserName='test-user',
+    PolicyArn='arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+)
 
-#print(response)
+print(response)
 
 #Calls detach_user_policy() to remove an IAM policy from a user.
 
@@ -194,9 +194,9 @@ for user in response['Users']:
 
 #14 Delete an IAM Group
 
-#response = iam.delete_group(GroupName='Security_Engineers')
+response = iam.delete_group(GroupName='Security_Engineers')
 
-#print(response)
+print(response)
 
 #Uses delete_group() to remove an IAM group.
 #Ensure all users are removed before deleting.
@@ -217,9 +217,9 @@ for role in response['Roles']:
 
 #16 Delete an IAM Role
 
-#response = iam.delete_role(RoleName='EC2_S3_Access_Role2')
+response = iam.delete_role(RoleName='EC2_S3_Access_Role2')
 
-#print(response)
+print(response)
 
 #Calls delete_role() to remove an IAM role.
 #Ensure no policies are attached before deleting.
@@ -228,9 +228,9 @@ for role in response['Roles']:
 
 #17 Create an IAM Access Key
 
-#response = iam.create_access_key(UserName='test-user')
+response = iam.create_access_key(UserName='test-user')
 
-#print(response['AccessKey'])
+print(response['AccessKey'])
 
 #Calls create_access_key() to generate credentials.
 #Returns AccessKeyId and SecretAccessKey.
@@ -239,12 +239,12 @@ for role in response['Roles']:
 
 #18 Update an IAM User Name
 
-#response = iam.update_user(
-#    UserName='test-user',
-#    NewUserName='new-user'
-#)
+response = iam.update_user(
+    UserName='test-user',
+    NewUserName='new-user'
+)
 
-#print(response)
+print(response)
 
 #Calls update_user() to rename an existing IAM user.
 #Ensure no active sessions for the old user before renaming
@@ -287,12 +287,12 @@ for policy in response['PolicyNames']:
 
 #22 Delete an Inline Policy from a User
 
-#response = iam.delete_user_policy(
-#    UserName='new-user',
-#    PolicyName='S3ReadOnlyPolicy'
-#)
+response = iam.delete_user_policy(
+    UserName='new-user',
+    PolicyName='S3ReadOnlyPolicy'
+)
 
-#print(response)
+print(response)
 
 #Calls delete_user_policy() to remove a custom inline policy from a user.
 #Inline policies are embedded, unlike managed policies, which are reusable.
@@ -312,11 +312,11 @@ for key, value in response['SummaryMap'].items():
 
 #24 Delete an IAM Policy
 
-#response = iam.delete_policy(
-#    PolicyArn='arn:aws:iam::084375561193:policy/S3ReadOnlyPolicy'
-#)
+response = iam.delete_policy(
+    PolicyArn='arn:aws:iam::084375561193:policy/S3ReadOnlyPolicy'
+)
 
-#print(response)
+print(response)
 
 #Calls delete_policy() to remove a customer-managed IAM policy.
 #Ensure it's not attached to any user, role, or group before deletion.
@@ -361,9 +361,9 @@ print(response['PolicyVersion']['Document'])
 
 #28 Delete an IAM Login Profile
 
-#response = iam.delete_login_profile(UserName='new-user')
+response = iam.delete_login_profile(UserName='new-user')
 
-#print(response)
+print(response)
 
 #Calls delete_login_profile() to disable AWS Console login for a user.
 
@@ -383,9 +383,9 @@ for alias in response['AccountAliases']:
 
 #30 Set IAM Account Alias
 
-#response = iam.create_account_alias(AccountAlias='my-company-account')
+response = iam.create_account_alias(AccountAlias='my-company-account')
 
-#print(response)
+print(response)
 
 #Calls create_account_alias() to set a human-friendly name for the AWS account.
 
@@ -393,9 +393,9 @@ for alias in response['AccountAliases']:
 
 #31 Remove IAM Account Alias
 
-#response = iam.delete_account_alias(AccountAlias='my-company-account')
+response = iam.delete_account_alias(AccountAlias='my-company-account')
 
-#print(response)
+print(response)
 
 #Calls delete_account_alias() to remove an AWS friendly name.
 
